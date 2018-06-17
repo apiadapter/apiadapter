@@ -1,0 +1,15 @@
+{
+  "name": "apiadapter",
+  "version": "1.0.0",
+  "description": "API Adapter",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "adapter"
+  ],
+  "author": "Toni Iltanen",
+  "license": "ISC"
+}
