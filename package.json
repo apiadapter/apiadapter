@@ -4,12 +4,31 @@
   "description": "API Adapter",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "eslint --ignore-path .gitignore .",
+    "start": "node index.js"
   },
   "keywords": [
     "api",
     "adapter"
   ],
   "author": "Toni Iltanen",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "restify": "^7.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-config-strongloop": "^2.1.0",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "rimraf": "^2.6.2"
+  }
 }
