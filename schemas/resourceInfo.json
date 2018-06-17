@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "ResourceInfo",
+    "type": "object",
+    "properties": {
+        "link": {
+            "description": "Direct link to resource",
+            "type": "string",
+            "format": "uri"
+        },
+        "name": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "link",
+        "name"
+    ]
+}

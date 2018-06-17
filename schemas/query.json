@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Query",
+    "type": "object",
+    "properties": {
+        "queryType": {
+            "enum": [
+                "PERSON",
+                "ARTICLE"
+            ]
+        },
+        "include": {
+            "enum": [
+                "PERSON",
+                "ARTICLE"
+            ]
+        },
+        "filter": {
+            "anyOf": [
+                {
+                    "$ref": "file:src/object_api/schemas/person.json"
+                },
+                {
+                    "$ref": "file:src/object_api/schemas/article.json"
+                }
+            ]
+        }
+    },
+    "required": [
+        "queryType"
+    ]
+}

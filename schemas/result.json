@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Result",
+    "type": "object",
+    "properties": {
+        "datasources": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "results": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "file:src/object_api/schemas/person.json"
+                    },
+                    {
+                        "$ref": "file:src/object_api/schemas/article.json"
+                    }
+                ]
+            }
+        }
+    },
+    "required": [
+        "datasources",
+        "results"
+    ]
+}

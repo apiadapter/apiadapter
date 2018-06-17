@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Article",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "author": {
+            "type": "object",
+            "$ref": "file:src/object_api/schemas/person.json"
+        },
+        "resourceInfo": {
+            "type": "object",
+            "$ref": "file:src/object_api/schemas/resourceInfo.json"
+        }
+    },
+    "required": [
+        "title",
+        "description",
+        "resourceInfo"
+    ]
+}
