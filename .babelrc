@@ -4,7 +4,8 @@
         ["module-resolver", {
           "root": ["./src"],
           "alias": {
-            "schemas": "./schemas"
+            "schemas": "./schemas",
+            "constants": "./constants.js"
           }
         }]
       ]

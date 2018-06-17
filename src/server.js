@@ -1,4 +1,6 @@
 import restify from 'restify'
+import enroute from 'restify-enroute'
+import Routes from './routes.js'
 
 class Server {
   constructor (settings) {
@@ -12,13 +14,23 @@ class Server {
       name: this.name,
       version: this.version
     })
-
+    let port = this.port
     server.use(restify.plugins.acceptParser(server.acceptable))
     server.use(restify.plugins.queryParser())
     server.use(restify.plugins.bodyParser())
 
-    server.listen(this.port, function() {
-      console.log('%s listening at %s', server.name, server.url)
+    enroute.install({
+      config: Routes,
+      server: server,
+      basePath: __dirname}, function(err){
+      if (err) {
+        console.error('unable to install routes')
+      } else {
+        console.log('routes installed')
+        server.listen(port, function() {
+          console.log('%s listening at %s', server.name, server.url)
+        })
+      }
     })
   }
 }

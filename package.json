@@ -14,7 +14,8 @@
   "author": "Toni Iltanen",
   "license": "ISC",
   "dependencies": {
-    "restify": "^7.2.1"
+    "restify": "^7.2.1",
+    "restify-enroute": "^6.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
