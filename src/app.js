@@ -1,8 +1,10 @@
-import settings from '../config/settings.json'
+import config from 'config'
+import Database from './db'
 import Server from './server.js'
 import Apikey from './tools/apikey'
 
 const apikey = new Apikey()
-settings.apikey = apikey.readToken()
-const server = new Server(settings)
+config.apikey = apikey.readToken()
+const server = new Server(config)
+new Database().connect()
 server.start()

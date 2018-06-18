@@ -19,9 +19,11 @@
     },
     "plugins": [
       "import",
-      "babel"
+      "babel",
+      "mocha"
     ],
     "rules": {
+      "mocha/no-exclusive-tests": "error",
       "import/first": 2,
       "import/order": ["error", {"newlines-between": "never"}],
       "import/no-duplicates": 2,

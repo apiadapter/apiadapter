@@ -1,19 +1,19 @@
 import fs from 'fs'
 import chai, {expect} from 'chai'
 import chaiHttp from 'chai-http'
+import config from 'config'
 import Server from '../../server'
-import settings from '../../../config/settings.json'
 import Apikey from '../../tools/apikey'
 
 chai.use(chaiHttp)
 
 //Server without authorize
-settings.useAuth = false
-let server = new Server(settings).test()
+config.useAuth = false
+let server = new Server(config).test()
 
 //Server with token authorize
-settings.useAuth = true
-let authserver = new Server(settings).test()
+config.useAuth = true
+let authserver = new Server(config).test()
 
 let invalidQuery = fs.readFileSync(__dirname + '/../../../mocks/query_templates/invalid_query.json', {encoding: 'utf8'})
 let validQuery = fs.readFileSync(__dirname + '/../../../mocks/query_templates/valid_query.json', {encoding: 'utf8'})

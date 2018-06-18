@@ -1,5 +1,6 @@
 import crypto from 'crypto'
 import fs from 'fs'
+import config from 'config'
 
 class Apikey {
   create() {
@@ -30,7 +31,9 @@ class Apikey {
 
   writeToken(hash) {
     fs.writeFileSync(__dirname + '/../../APIKEY', hash)
-    console.log('New master apikey generated: ' + hash)
+    if(config.util.getEnv('NODE_ENV') !== 'test') {
+      console.log('New master apikey generated: ' + hash)
+    }
   }
 
 }

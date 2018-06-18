@@ -1,6 +1,8 @@
 import restify from 'restify'
 import errors from 'restify-errors'
 import enroute from 'restify-enroute'
+import morgan from 'morgan'
+import config from 'config'
 import Routes from './routes.js'
 import Apikey from './tools/apikey'
 
@@ -21,6 +23,9 @@ class Server {
     server.use(restify.plugins.acceptParser(server.acceptable))
     server.use(restify.plugins.queryParser())
     server.use(restify.plugins.bodyParser())
+    if(config.util.getEnv('NODE_ENV') !== 'test') {
+      server.use(morgan('combined'))
+    }
     
     if(this.useAuth) {
       server.use(restify.plugins.authorizationParser())

@@ -1,0 +1,8 @@
+{
+    "name": "Api Adapter",
+    "version": "1.0.0",
+    "port": 3000,
+    "apikey": "",
+    "useAuth": true,
+    "connectionstring": "mongodb://mongoadmin:secret@127.0.0.1/apiadapter?authSource=admin"
+}
