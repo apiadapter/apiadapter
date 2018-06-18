@@ -3,10 +3,13 @@ import {validate} from 'jsonschema'
 class Validate {
   query(query, schema) {
     if(!query || !schema) {
-      throw 'Query or schema missing!'
+      return false
     }
     var result = validate(query, schema)
-    return result
+    if(result.valid) {
+      return true
+    }
+    return false
   }
 }
 

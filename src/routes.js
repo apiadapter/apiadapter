@@ -10,6 +10,11 @@ export default {
       'get': {
         'source': './controllers/schemaController/get.js'
       }
+    },
+    'query/:query': {
+      'get': {
+        'source': './controllers/queryController/get.js'
+      }
     }
   }
 }
