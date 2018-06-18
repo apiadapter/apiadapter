@@ -18,10 +18,10 @@
         "filter": {
             "anyOf": [
                 {
-                    "$ref": "file:src/object_api/schemas/person.json"
+                    "$ref": "file:src/schemas/person.json"
                 },
                 {
-                    "$ref": "file:src/object_api/schemas/article.json"
+                    "$ref": "file:src/schemas/article.json"
                 }
             ]
         }

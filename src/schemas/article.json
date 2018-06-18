@@ -11,11 +11,11 @@
         },
         "author": {
             "type": "object",
-            "$ref": "file:src/object_api/schemas/person.json"
+            "$ref": "file:src/schemas/person.json"
         },
         "resourceInfo": {
             "type": "object",
-            "$ref": "file:src/object_api/schemas/resourceInfo.json"
+            "$ref": "file:src/schemas/resourceInfo.json"
         }
     },
     "required": [

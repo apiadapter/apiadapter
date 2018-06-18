@@ -18,12 +18,12 @@
             "type": "array",
             "items": {
                 "type": "object",
-                "$ref": "file:src/object_api/schemas/article.json"
+                "$ref": "file:src/schemas/article.json"
             }
         },
         "resourceInfo": {
             "type": "object",
-            "$ref": "file:src/object_api/schemas/resourceInfo.json"
+            "$ref": "file:src/schemas/resourceInfo.json"
         }
     },
     "required": [
