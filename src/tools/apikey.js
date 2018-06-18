@@ -23,7 +23,7 @@ class Apikey {
     else {
       token = fs.readFileSync(__dirname + '/../../APIKEY', {encoding: 'utf8'})
       if(!this.validate(token)) {
-        throw ('Invalid master apikey!, existing...')
+        throw ('Invalid master apikey!, exiting...')
       }
     }
     return token

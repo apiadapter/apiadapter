@@ -59,7 +59,7 @@ describe('Apikey', () => {
     })
     it('should return an error from invalid APIKEY', () => {
       fs.writeFileSync(__dirname + '/../../APIKEY', 'ABCDE')
-      expect(() => apikey.readToken()).to.throw('Invalid master apikey!, existing...')
+      expect(() => apikey.readToken()).to.throw('Invalid master apikey!, exiting...')
     })
   })
 })
