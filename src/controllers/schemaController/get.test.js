@@ -6,8 +6,6 @@ import settings from '../../../config/settings.json'
 chai.use(chaiHttp)
 let server = new Server(settings).test()
 
-
-
 describe('SchemaController', () => {
   describe('.get', () => {
     it('Should return 500 for invalid parameter', function (done) {
