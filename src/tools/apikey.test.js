@@ -53,7 +53,7 @@ describe('Apikey', () => {
       let exists = fs.existsSync(__dirname + '/../../APIKEY')
       expect(exists).to.equal(true)
     })
-    it('should return existing APIKEY and return a hash', () => {
+    it('should return existing APIKEY', () => {
       var hash = apikey.readToken()
       expect(apikey.validate(hash)).to.equal(true)
       var newhash = apikey.readToken()
