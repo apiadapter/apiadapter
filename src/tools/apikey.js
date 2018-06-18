@@ -1,4 +1,5 @@
 import crypto from 'crypto'
+import fs from 'fs'
 
 class Apikey {
   create() {
@@ -10,6 +11,10 @@ class Apikey {
   validate(hash) {
     if(hash == null) { return false }
     return hash.match(/\b([a-f0-9]{40})\b/) != null ? true : false
+  }
+
+  readToken() {
+    return fs.readFileSync(__dirname + '/../../APIKEY', {encoding: 'utf8'})
   }
 }
 export default Apikey
