@@ -3,12 +3,12 @@ export default {
   'routes': {
     'setup': {
       'get': {
-        'source': './setup/get.js'
+        'source': './controllers/setupController/get.js'
       }
     },
     'schema/:name': {
       'get': {
-        'source': './schema/get.js'
+        'source': './controllers/schemaController/get.js'
       }
     }
   }
