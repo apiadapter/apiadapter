@@ -14,7 +14,26 @@ class Apikey {
   }
 
   readToken() {
-    return fs.readFileSync(__dirname + '/../../APIKEY', {encoding: 'utf8'})
+    var token = ''
+    if(!fs.existsSync(__dirname + '/../../APIKEY')) {
+      token = this.create()
+      this.writeToken(token)
+    }
+    else {
+      token = fs.readFileSync(__dirname + '/../../APIKEY', {encoding: 'utf8'})
+      if(this.validate(token)) {
+        console.log('Existing master apikey found: ' + token)
+      } else {
+        throw ('Invalid master apikey!, existing...')
+      }
+    }
+    return token
   }
+
+  writeToken(hash) {
+    fs.writeFileSync(__dirname + '/../../APIKEY', hash)
+    console.log('New master apikey generated: ' + hash)
+  }
+
 }
 export default Apikey
