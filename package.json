@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "pretest": "eslint --ignore-path .gitignore .",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "./node_modules/.bin/mocha --compilers js:babel-core/register src/**/*.test.js --reporter spec"
   },
   "keywords": [
     "api",
@@ -24,6 +25,7 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-config-strongloop": "^2.1.0",
@@ -32,6 +34,8 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
-    "rimraf": "^2.6.2"
+    "mocha": "^5.2.0",
+    "rimraf": "^2.6.2",
+    "spec": "^1.0.1"
   }
 }

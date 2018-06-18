@@ -1,11 +1,12 @@
-import {Validator} from 'jsonschema'
+import {validate} from 'jsonschema'
 
 class Validate {
   query(query, schema) {
     if(!query || !schema) {
       throw 'Query or schema missing!'
     }
-    return new Validator().validate(this.query, this.schema)
+    var result = validate(query, schema)
+    return result
   }
 }
 
