@@ -14,6 +14,7 @@
   "author": "Toni Iltanen",
   "license": "ISC",
   "dependencies": {
+    "jsonschema": "^1.2.4",
     "restify": "^7.2.1",
     "restify-enroute": "^6.1.0"
   },
