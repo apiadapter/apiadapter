@@ -7,18 +7,27 @@ class Server {
     this.port = settings.port
     this.name = settings.name
     this.version = settings.version
-  }
-
-  start() {
-    let server = restify.createServer({
+    this.server = restify.createServer({
       name: this.name,
       version: this.version
     })
-    let port = this.port
-    server.use(restify.plugins.acceptParser(server.acceptable))
-    server.use(restify.plugins.queryParser())
-    server.use(restify.plugins.bodyParser())
+    this.server.use(restify.plugins.acceptParser(this.server.acceptable))
+    this.server.use(restify.plugins.queryParser())
+    this.server.use(restify.plugins.bodyParser())
+  }
 
+  test() {
+    let testServer = restify.createServer()
+    enroute.install({
+      config: Routes,
+      server: testServer,
+      basePath: __dirname}, function() {})
+    return testServer
+  }
+
+  start() {
+    let port = this.port
+    let server = this.server
     enroute.install({
       config: Routes,
       server: server,
