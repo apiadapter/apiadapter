@@ -23,15 +23,17 @@ describe('Apikey', () => {
     })
   })
   describe('.writeToken()', () => {
+    beforeEach(function() {
+      let exists = fs.existsSync(__dirname + '/../../APIKEY')
+      if(exists) {
+        fs.unlinkSync(__dirname + '/../../APIKEY')
+      }
+    })
     it('should create APIKEY file to root', () => {
-      fs.unlinkSync(__dirname + '/../../APIKEY')
       var hash = apikey.create()
       apikey.writeToken(hash)
       let exists = fs.existsSync(__dirname + '/../../APIKEY')
       expect(exists).to.equal(true)
-      fs.unlinkSync(__dirname + '/../../APIKEY')
-      exists = fs.existsSync(__dirname + '/../../APIKEY')
-      expect(exists).to.equal(false)
     })
   })
   describe('.readToken()', () => {
