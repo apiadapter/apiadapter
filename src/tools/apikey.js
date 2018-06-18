@@ -21,9 +21,7 @@ class Apikey {
     }
     else {
       token = fs.readFileSync(__dirname + '/../../APIKEY', {encoding: 'utf8'})
-      if(this.validate(token)) {
-        console.log('Existing master apikey found: ' + token)
-      } else {
+      if(!this.validate(token)) {
         throw ('Invalid master apikey!, existing...')
       }
     }
