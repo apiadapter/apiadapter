@@ -4,5 +4,7 @@
     "port": 3000,
     "apikey": "",
     "useAuth": true,
-    "connectionstring": "mongodb://mongoadmin:secret@127.0.0.1/apiadapter?authSource=admin"
+    "connectionstring": "mongodb://mongoadmin:secret@127.0.0.1/apiadapter?authSource=admin",
+    "rabbitHost": "amqp://localhost",
+    "rabbitPort": 5672
 }
