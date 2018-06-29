@@ -9,11 +9,11 @@
                 "ARTICLE"
             ]
         },
-        "include": {
-            "enum": [
-                "PERSON",
-                "ARTICLE"
-            ]
+        "includes": {
+            "type": "array",
+            "items": {
+                "enum": ["PERSON", "ARTICLE"]
+            }
         },
         "filter": {
             "anyOf": [
