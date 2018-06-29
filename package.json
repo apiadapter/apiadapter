@@ -15,6 +15,7 @@
   "author": "Toni Iltanen",
   "license": "ISC",
   "dependencies": {
+    "amqplib": "^0.5.2",
     "config": "^1.30.0",
     "jsonschema": "^1.2.4",
     "mongoose": "^5.1.5",
