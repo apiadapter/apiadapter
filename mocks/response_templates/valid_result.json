@@ -1,0 +1,8 @@
+{
+    "datasources": ["localhost"],
+    "results": [
+        {
+            "foo" : "bar"
+        }
+    ]
+}

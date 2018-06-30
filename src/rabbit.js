@@ -34,8 +34,6 @@ class Rabbit {
   }
 
   createTask(taskinfo) {
-    if(config.noIntegrations) { return new Promise(function(resolve) {resolve('{ "foo" : "bar" }')})}
-
     return rabbit.connect(config.rabbitHost).then(function(conn) {
       return conn.createChannel().then(function(ch) {
         return new Promise(function(resolve) {
