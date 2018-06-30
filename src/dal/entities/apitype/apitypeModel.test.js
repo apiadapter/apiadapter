@@ -35,7 +35,7 @@ describe('Apitype', () => {
         })
       })
     })
-    it('Should throw a validation error', (done) => {
+    it('Should throw a validation error on save', (done) => {
       var item = new Apitype({name: ''})
       item.save(function(err, item) {
         expect(err.errors.name).to.exist
