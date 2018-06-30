@@ -11,5 +11,5 @@ npm run script integration-test
 ```
 
 ## Requirements for integration testing (at the moment)
-RabbitMQ up and running, with guest/guest. (at port 5672)
-MongoDb up and running, see configs to assign your connection string (at /config/development.json)
+* RabbitMQ up and running, with guest/guest. (at port 5672)
+* MongoDb up and running, see configs to assign your connection string (at /config/development.json)
