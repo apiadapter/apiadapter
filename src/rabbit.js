@@ -6,6 +6,7 @@ import Uuid from './tools/uuid'
 class Rabbit {
   constructor () {
     this.queue = 'api_queue'
+    this.connection = null
   }
 
   consumer() {
@@ -22,7 +23,6 @@ class Rabbit {
         })
 
         function reply(msg) {
-          console.log(msg.content.toString())
           var response = '{ "foo" : "bar" }' //TODO make actual api calls
           ch.sendToQueue(msg.properties.replyTo,
             Buffer.from(response.toString()),
@@ -34,6 +34,7 @@ class Rabbit {
   }
 
   createTask(taskinfo) {
+    var connection = this.connection
     return rabbit.connect(config.rabbitHost).then(function(conn) {
       return conn.createChannel().then(function(ch) {
         return new Promise(function(resolve) {
@@ -42,6 +43,7 @@ class Rabbit {
           function maybeAnswer(msg) {
             if (msg.properties.correlationId === corrId) {
               resolve(msg.content.toString())
+              setTimeout(function() { conn.close()}, 500)
             }
           }
 
@@ -60,7 +62,7 @@ class Rabbit {
           })
         })
       })
-    }).catch(console.warn)
+    }).catch(function(err) { console.log(err)})
   }
 }
 export default Rabbit

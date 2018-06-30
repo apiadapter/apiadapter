@@ -6,5 +6,6 @@
     "useAuth": true,
     "connectionstring": "mongodb://mongoadmin:secret@127.0.0.1/apiadapter?authSource=admin",
     "rabbitHost": "amqp://localhost",
-    "rabbitPort": 5672
+    "rabbitPort": 5672,
+    "noIntegrationTests": false
 }
