@@ -14,14 +14,15 @@ class Server {
     this.useAuth = settings.useAuth
     this.server = restify.createServer({
       name: this.name,
-      version: this.version
+      version: this.version,
+      maxParamLength: 10000
     })
     this.server = this.initializeServer(this.server)
   }
 
   initializeServer(server) {
     server.use(restify.plugins.acceptParser(server.acceptable))
-    server.use(restify.plugins.queryParser())
+    server.use(restify.plugins.queryParser({parameterLimit: 5000}))
     server.use(restify.plugins.bodyParser())
     if(config.util.getEnv('NODE_ENV') !== 'test') {
       server.use(morgan('combined'))
@@ -43,7 +44,7 @@ class Server {
   }
 
   test() {
-    let testServer = restify.createServer()
+    let testServer = restify.createServer({maxParamLength: 10000})
     testServer = this.initializeServer(testServer)
     enroute.install({
       config: Routes,
