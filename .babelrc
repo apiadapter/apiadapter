@@ -5,7 +5,8 @@
           "root": ["./src"],
           "alias": {
             "schema": "./schemas",
-            "constants": "./constants.js"
+            "constants": "./constants.js",
+            "rabbit": "./rabbit.js"
           }
         }]
       ]

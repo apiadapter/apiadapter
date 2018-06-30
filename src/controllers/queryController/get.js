@@ -1,6 +1,7 @@
 import fs from 'fs'
 import errors from 'restify-errors'
 import Validate from '../../validate/validate'
+import Task from '../../messageQueue/task'
 
 module.exports =  function handler(req, res, next) {
   var params = req.params
@@ -12,7 +13,7 @@ module.exports =  function handler(req, res, next) {
     if(!validate.query(JSON.parse(params.query), JSON.parse(querySchema))) {
       res.send(new errors.BadRequestError('Invalid query'))
     } else {
-      console.log(query)
+
       try {
         fs.accessSync(__dirname + '/../../schemas/' + query.queryType.toLowerCase() + '.json', fs.F_OK)
         if(query.includes) {
@@ -20,8 +21,10 @@ module.exports =  function handler(req, res, next) {
             fs.accessSync(__dirname + '/../../schemas/' + query.includes[i].toLowerCase() + '.json', fs.F_OK)
           }
         }
-        res.send(200, 'Forward to messagequeue') //TODO break message to messagequeue
-
+        new Task().create(query.toString())
+          .then(function(response) {
+            res.send(200,JSON.parse(response))
+          })
       } catch(e) {
         res.send(new errors.BadRequestError('Querytype not found!' + '\r\n' + e))
       }
