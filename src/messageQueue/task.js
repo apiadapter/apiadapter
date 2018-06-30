@@ -2,7 +2,6 @@ import fs from 'fs'
 import config from 'config'
 import Rabbit from '../rabbit'
 
-
 class Task {
   create() {
     if(config.noIntegrationTests) { 
