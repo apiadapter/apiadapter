@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import config from 'config'
+import Apitype from './dal/entities/apitype/apitypeModel'
 
 class Database {
   connect() {

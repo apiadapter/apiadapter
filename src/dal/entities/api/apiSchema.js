@@ -8,8 +8,10 @@ const apiSchema = mongoose.Schema({
   type: String,
   address: String,
   port: Number,
+  requireHeaders: Boolean,
+  headers: [{type: Schema.Types.ObjectId, ref: 'Header'}],
+  api: {type: Schema.Types.ObjectId, ref: 'Apitype'},
   updated: Date,
-  endpoints: Schema.Types.Mixed,
-  _id: Schema.Types.ObjectId
+  _id: Number
 })
 export default apiSchema

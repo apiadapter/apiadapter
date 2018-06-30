@@ -6,8 +6,9 @@
   "scripts": {
     "pretest": "eslint --ignore-path .gitignore .",
     "start": "export NODE_ENV=development && node index.js",
-    "test": "export NODE_ENV=test INTEGRATION_TESTS=false && ./node_modules/.bin/mocha --require babel-core/register src/**/*.test.js src/**/**/*.test.js --reporter spec",
-    "integration-test": "export NODE_ENV=test INTEGRATION_TESTS=true &&  ./node_modules/.bin/mocha --require babel-core/register src/**/*.test.js src/**/**/*.test.js --reporter spec"
+    "test": "export NODE_ENV=test INTEGRATION_TESTS=false && ./node_modules/.bin/mocha --require babel-core/register src/**/*.test.js src/**/**/*.test.js src/**/**/**/*.test.js --reporter spec",
+    "integration-test": "export NODE_ENV=test INTEGRATION_TESTS=true &&  ./node_modules/.bin/mocha --require babel-core/register src/**/*.test.js src/**/**/*.test.js src/**/**/**/*.test.js --reporter spec",
+    "migrate": "./node_modules/.bin/migrate"
   },
   "keywords": [
     "api",
@@ -16,11 +17,13 @@
   "author": "Toni Iltanen",
   "license": "ISC",
   "dependencies": {
+    "2": "^1.0.2",
     "amqplib": "^0.5.2",
     "bluebird": "^3.5.1",
     "config": "^1.30.0",
     "eslint-import-resolver-babel-module": "^4.0.0",
     "jsonschema": "^1.2.4",
+    "migrate-mongoose": "^3.2.2",
     "mongoose": "^5.1.5",
     "morgan": "^1.9.0",
     "restify": "^7.2.1",
