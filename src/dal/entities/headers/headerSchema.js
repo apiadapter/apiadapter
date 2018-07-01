@@ -7,6 +7,7 @@ const headerSchema = mongoose.Schema({
   description: String,
   key: {type: String, required: true},
   value: {type: String, required: true},
-  api: {type: Schema.Types.ObjectId, ref: 'Api'}
+  api: {type: Schema.Types.ObjectId, ref: 'Api'},
+  deleted: Boolean
 })
 export default headerSchema

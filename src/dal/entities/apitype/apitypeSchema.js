@@ -6,6 +6,7 @@ const apitypeSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  apis: [{type: Schema.Types.ObjectId, ref: 'Api'}]
+  apis: [{type: Schema.Types.ObjectId, ref: 'Api'}],
+  deleted: Boolean
 })
 export default apitypeSchema

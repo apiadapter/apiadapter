@@ -10,6 +10,8 @@ const apiSchema = mongoose.Schema({
   requireHeaders: {type: Boolean, required: true},
   headers: [{type: Schema.Types.ObjectId, ref: 'Header'}],
   type: {type: Schema.Types.ObjectId, ref: 'Apitype'},
-  updated: Date
+  client: {type: Schema.Types.ObjectId, ref: 'Client'},
+  updated: Date,
+  deleted: Boolean
 })
 export default apiSchema
