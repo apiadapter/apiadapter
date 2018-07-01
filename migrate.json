@@ -1,5 +1,0 @@
-{
-  "dbConnectionUri" : "mongodb://mongoadmin:secret@127.0.0.1/apiadapter?authSource=admin",
-  "migrationsDir": "migrations",
-  "es6": true
-}
