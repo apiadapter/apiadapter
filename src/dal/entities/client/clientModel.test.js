@@ -10,7 +10,7 @@ if(runIntegrationTests) {
 }
 
 describe('Client', () => {
-  it('Should faild with invalid apikey', (done) => {
+  it('Should faild with invalid client', (done) => {
     var invalid = new Client()
     invalid.validate((err) => {
       expect(err.errors.enabled).to.exist
