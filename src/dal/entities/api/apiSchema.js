@@ -2,16 +2,14 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 const apiSchema = mongoose.Schema({
-  enabled: Boolean,
-  name: String,
+  enabled: {type: Boolean, required: true},
+  name: {type: String, required: true},
   description: String,
-  type: String,
-  address: String,
-  port: Number,
-  requireHeaders: Boolean,
+  address: {type: String, required: true},
+  port: {type: Number, required: true},
+  requireHeaders: {type: Boolean, required: true},
   headers: [{type: Schema.Types.ObjectId, ref: 'Header'}],
-  api: {type: Schema.Types.ObjectId, ref: 'Apitype'},
-  updated: Date,
-  _id: Number
+  type: {type: Schema.Types.ObjectId, ref: 'Apitype'},
+  updated: Date
 })
 export default apiSchema

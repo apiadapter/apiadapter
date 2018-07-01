@@ -2,11 +2,11 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 const headerSchema = mongoose.Schema({
-  enabled: Boolean,
-  name: String,
+  enabled: {type: Boolean, required: true},
+  name: {type: String, required: true},
   description: String,
-  key: String,
-  value: String,
-  api: {type: Number, ref: 'Api'}
+  key: {type: String, required: true},
+  value: {type: String, required: true},
+  api: {type: Schema.Types.ObjectId, ref: 'Api'}
 })
 export default headerSchema
