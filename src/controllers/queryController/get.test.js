@@ -10,7 +10,6 @@ chai.use(chaiHttp)
 //Server without authorize
 config.useAuth = false
 let server = new Server(config).test()
-
 let invalidQuery = fs.readFileSync(__dirname + '/../../../mocks/query_templates/invalid_query.json', {encoding: 'utf8'})
 let validQuery = fs.readFileSync(__dirname + '/../../../mocks/query_templates/valid_query.json', {encoding: 'utf8'})
 
@@ -39,7 +38,7 @@ describe('QueryController without authorization', () => {
 config.useAuth = true
 let authserver = new Server(config).test()
 
-describe('QueryController without authorization', () => {
+describe('QueryController with authorization', () => {
   describe('.get', () => {
     it('Should return 401 without token', function () {
       chai.request(authserver)
