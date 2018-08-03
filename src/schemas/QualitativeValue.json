@@ -1,0 +1,60 @@
+{
+	"id": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/QualitativeValue.json",
+	"title": "Qualitative Value",
+	"format": "http://schema.org/QualitativeValue",
+	"media": {"type": "application/json;profile=http://schema.org/QualitativeValue"},
+	"allOf": [{"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/Enumeration.json"}],
+	"type": "object",
+	"properties": {
+		"equal": {"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/QualitativeValue.json#/definitions/possibleRefArray"},
+		"greater": {"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/QualitativeValue.json#/definitions/possibleRefArray"},
+		"greaterOrEqual": {"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/QualitativeValue.json#/definitions/possibleRefArray"},
+		"lesser": {"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/QualitativeValue.json#/definitions/possibleRefArray"},
+		"lesserOrEqual": {"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/QualitativeValue.json#/definitions/possibleRefArray"},
+		"nonEqual": {"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/QualitativeValue.json#/definitions/possibleRefArray"},
+		"valueReference": {
+			"type": "array",
+			"items": {"$ref": "#/definitions/valueReference"}
+		}
+	},
+	"definitions": {
+		"array": {
+			"type": "array",
+			"items": {"$ref": "#"}
+		},
+		"possibleRef": {
+			"oneOf": [
+				{"$ref": "#"},
+				{
+					"type": "string",
+					"format": "uri",
+					"links": [{
+						"rel": "full",
+						"href": "{+$}"
+					}]
+				}
+			]
+		},
+		"possibleRefArray": {
+			"oneOf": [
+				{
+					"type": "string",
+					"format": "uri",
+					"links": [{
+						"rel": "full",
+						"href": "{+$}"
+					}]
+				},
+				{
+					"type": "array",
+					"items": {"$ref": "#/definitions/possibleRef"}
+				}
+			]
+		},
+		"valueReference": {
+			"title": "Value Reference",
+			"description": "A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.",
+			"anyOf": [{"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/Enumeration.json#/definitions/possibleRef"}, {"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/StructuredValue.json#/definitions/possibleRef"}]
+		}
+	}
+}

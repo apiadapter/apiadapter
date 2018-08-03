@@ -1,0 +1,59 @@
+{
+	"id": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/Nerve.json",
+	"title": "Nerve",
+	"format": "http://schema.org/Nerve",
+	"media": {"type": "application/json;profile=http://schema.org/Nerve"},
+	"allOf": [{"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/AnatomicalStructure.json"}],
+	"type": "object",
+	"properties": {
+		"branch": {"$ref": "#/definitions/branch"},
+		"nerveMotor": {"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/Muscle.json#/definitions/possibleRef"},
+		"sensoryUnit": {"$ref": "#/definitions/sensoryUnit"},
+		"sourcedFrom": {"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/BrainStructure.json#/definitions/possibleRef"}
+	},
+	"definitions": {
+		"array": {
+			"type": "array",
+			"items": {"$ref": "#"}
+		},
+		"possibleRef": {
+			"oneOf": [
+				{"$ref": "#"},
+				{
+					"type": "string",
+					"format": "uri",
+					"links": [{
+						"rel": "full",
+						"href": "{+$}"
+					}]
+				}
+			]
+		},
+		"possibleRefArray": {
+			"oneOf": [
+				{
+					"type": "string",
+					"format": "uri",
+					"links": [{
+						"rel": "full",
+						"href": "{+$}"
+					}]
+				},
+				{
+					"type": "array",
+					"items": {"$ref": "#/definitions/possibleRef"}
+				}
+			]
+		},
+		"branch": {
+			"title": "Branch",
+			"description": "The branches that delineate from the nerve bundle.",
+			"anyOf": [{"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/AnatomicalStructure.json#/definitions/possibleRef"}, {"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/Nerve.json#/definitions/possibleRef"}]
+		},
+		"sensoryUnit": {
+			"title": "Sensory Unit",
+			"description": "The neurological pathway extension that inputs and sends information to the brain or spinal cord.",
+			"anyOf": [{"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/AnatomicalStructure.json#/definitions/possibleRef"}, {"$ref": "https://raw.githubusercontent.com/CommerceIntegration/schema-org-gen/master/generated_schemas/SuperficialAnatomy.json#/definitions/possibleRef"}]
+		}
+	}
+}

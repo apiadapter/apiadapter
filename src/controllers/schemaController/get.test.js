@@ -18,7 +18,7 @@ describe('SchemaController', () => {
   describe('.get', () => {
     it('Should return 400 for invalid parameter', function () {
       chai.request(server)
-        .get('/schema/person.js')
+        .get('/schema/Person.js')
         .end((err, res) => {
           expect(res).to.have.status(400)
           server.close()
@@ -35,7 +35,7 @@ describe('SchemaController', () => {
     })
     it('Should return 200 for valid parameter', function () {
       chai.request(server)
-        .get('/schema/person.json')
+        .get('/schema/Person.json')
         .end((err, res) => {
           expect(res).to.have.status(200)
           server.close()
@@ -43,7 +43,7 @@ describe('SchemaController', () => {
     })
     it('Should return 401 without token using authorization', function () {
       chai.request(authserver)
-        .get('/schema/person.json')
+        .get('/schema/Person.json')
         .end((err, res) => {
           expect(res).to.have.status(401)
           server.close()
@@ -52,7 +52,7 @@ describe('SchemaController', () => {
     it('Should return 200 with token using authorization', function () {
       let apikey = new Apikey()
       chai.request(authserver)
-        .get('/schema/person.json')
+        .get('/schema/Person.json')
         .set('X-API-KEY', apikey.readToken())
         .end((err, res) => {
           expect(res).to.have.status(200)
