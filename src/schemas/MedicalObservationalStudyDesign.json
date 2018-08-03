@@ -1,5 +1,5 @@
 {
-	"id": "https://raw.githubusercontent.com/apiadapter/schema-org-gen/master/generated_schemas/MedicalObservationalStudyDesign.json",
+	"id": "https://raw.githubusercontent.com/apiadapter/core/master/src/schemas/MedicalObservationalStudyDesign.json",
 	"title": "Medical Observational Study Design",
 	"format": "http://schema.org/MedicalObservationalStudyDesign",
 	"media": {"type": "application/json;profile=http://schema.org/MedicalObservationalStudyDesign"},
