@@ -5,13 +5,13 @@
     "properties": {
         "queryType": {
             "enum": [
-                "PERSON"
+                "Person"
             ]
         },
         "includes": {
             "type": "array",
             "items": {
-                "enum": ["PERSON"]
+                "enum": ["Person"]
             }
         },
         "method": {
