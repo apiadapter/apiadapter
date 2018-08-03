@@ -14,7 +14,7 @@ let server = new Server(config).test()
 config.useAuth = true
 let authserver = new Server(config).test()
 
-describe('SchemaController', () => {
+describe('SchemaController without authorization', () => {
   describe('.get', () => {
     it('Should return 400 for invalid parameter', function () {
       chai.request(server)
@@ -41,7 +41,11 @@ describe('SchemaController', () => {
           server.close()
         })
     })
-    it('Should return 401 without token using authorization', function () {
+  })
+})
+describe('SchemaController with authorization', () => {
+  describe('.get', () => {
+    it('Should return 401 without token', function () {
       chai.request(authserver)
         .get('/schema/Person.json')
         .end((err, res) => {
@@ -49,7 +53,7 @@ describe('SchemaController', () => {
           server.close()
         })
     })
-    it('Should return 200 with token using authorization', function () {
+    it('Should return 200 with token', function () {
       let apikey = new Apikey()
       chai.request(authserver)
         .get('/schema/Person.json')
