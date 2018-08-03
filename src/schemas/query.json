@@ -5,14 +5,13 @@
     "properties": {
         "queryType": {
             "enum": [
-                "PERSON",
-                "ARTICLE"
+                "PERSON"
             ]
         },
         "includes": {
             "type": "array",
             "items": {
-                "enum": ["PERSON", "ARTICLE"]
+                "enum": ["PERSON"]
             }
         },
         "method": {
@@ -26,10 +25,7 @@
         "filter": {
             "anyOf": [
                 {
-                    "$ref": "file:src/schemas/person.json"
-                },
-                {
-                    "$ref": "file:src/schemas/article.json"
+                    "$ref": "https://raw.githubusercontent.com/apiadapter/schema-org-gen/master/generated_schemas/Organization.json"
                 }
             ]
         }

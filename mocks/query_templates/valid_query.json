@@ -1,1 +1,1 @@
-{"queryType": "PERSON", "includes": ["ARTICLE"], "method" : "GET"}
+{"queryType": "PERSON", "method" : "GET"}
