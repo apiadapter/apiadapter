@@ -7,5 +7,6 @@
     "connectionstring": "mongodb://mongoadmin:secret@127.0.0.1/apiadapter?authSource=admin",
     "rabbitHost": "amqp://localhost",
     "rabbitPort": 5672,
-    "noIntegrationTests": false
+    "noIntegrationTests": false,
+    "schemaRepository" : "https://raw.githubusercontent.com/apiadapter/core/master/src/schemas/"
 }

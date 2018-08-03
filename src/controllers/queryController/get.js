@@ -6,7 +6,7 @@ import Task from '../../messageQueue/task'
 module.exports =  function handler(req, res, next) {
   var params = req.params
   var validate = new Validate()
-  var querySchema = fs.readFileSync(__dirname + '/../../schemas/query.json', {encoding: 'utf8'})
+  var querySchema = fs.readFileSync(__dirname + '/../../schemas/Query.json', {encoding: 'utf8'})
 
   try {
     var query = JSON.parse(params.query)
