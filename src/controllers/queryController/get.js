@@ -15,10 +15,10 @@ module.exports =  function handler(req, res, next) {
     } else {
 
       try {
-        fs.accessSync(__dirname + '/../../schemas/' + query.queryType.toLowerCase() + '.json', fs.F_OK)
+        fs.accessSync(__dirname + '/../../schemas/' + query.queryType +'.json', fs.F_OK)
         if(query.includes) {
           for(var i = 0; i < query.includes.length; i++) {
-            fs.accessSync(__dirname + '/../../schemas/' + query.includes[i].toLowerCase() + '.json', fs.F_OK)
+            fs.accessSync(__dirname + '/../../schemas/' + query.includes[i] + '.json', fs.F_OK)
           }
         }
         new Task().create(query.toString())
