@@ -14,10 +14,7 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "file:src/schemas/person.json"
-                    },
-                    {
-                        "$ref": "file:src/schemas/article.json"
+                        "$ref": "file:src/schemas/Personn.json"
                     }
                 ]
             }
