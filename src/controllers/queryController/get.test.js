@@ -27,6 +27,7 @@ describe('QueryController without authorization', () => {
       chai.request(server)
         .get('/query/' + validQuery)
         .end((err, res) => {
+          console.log(res.error)
           expect(res).to.have.status(200)
           server.close()
         })
