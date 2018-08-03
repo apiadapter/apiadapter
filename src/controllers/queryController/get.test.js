@@ -10,10 +10,15 @@ chai.use(chaiHttp)
 //Server without authorize
 config.useAuth = false
 let server = new Server(config).test()
+
+//Server with token authorize
+config.useAuth = true
+let authserver = new Server(config).test()
+
 let invalidQuery = fs.readFileSync(__dirname + '/../../../mocks/query_templates/invalid_query.json', {encoding: 'utf8'})
 let validQuery = fs.readFileSync(__dirname + '/../../../mocks/query_templates/valid_query.json', {encoding: 'utf8'})
 
-describe('QueryController without authorization', () => {
+describe('QueryController', () => {
   describe('.get', () => {
     it('Should return 400 for invalid query', function () {
       chai.request(server)
@@ -31,16 +36,7 @@ describe('QueryController without authorization', () => {
           server.close()
         })
     })
-  })
-})
-
-//Server with token authorize
-config.useAuth = true
-let authserver = new Server(config).test()
-
-describe('QueryController with authorization', () => {
-  describe('.get', () => {
-    it('Should return 401 without token', function () {
+    it('Should return 401 without token with authorization', function () {
       chai.request(authserver)
         .get('/query/' + validQuery)
         .end((err, res) => {
@@ -48,7 +44,7 @@ describe('QueryController with authorization', () => {
           server.close()
         })
     })
-    it('Should return 200 with token', function () {
+    it('Should return 200 with token with authorization', function () {
       let apikey = new Apikey()
       chai.request(authserver)
         .get('/query/' + validQuery)
