@@ -16,8 +16,6 @@ var runIntegrationTests = (process.env.INTEGRATION_TESTS == 'true')
 var apikey = new Apikey()
 
 if(runIntegrationTests) { 
-
-  new Database().connect()
   describe('ApiController', () =>  { 
     describe('apiPost', () =>  {
       it('Should not save invalid Api', () => {
