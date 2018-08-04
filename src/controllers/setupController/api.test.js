@@ -31,23 +31,6 @@ if(runIntegrationTests) {
             server.close()
           })
       }),
-      it('Should post successfully', () => {
-        chai.request(server)
-          .post('/setup')
-          .set('X-API-KEY', apikey.readToken())
-          .set('Content-Type', 'application/json')
-          .send({
-            'enabled': false,
-            'name': 'foo',
-            'address': 'bar',
-            'port': 12345,
-            'requireHeaders': false
-          })
-          .end((err, res) => {
-            expect(res).to.have.status(201)
-            server.close()
-          })
-      }),
       it('Should delete successfully', () => {
         var item = new Api({
           'enabled': false,
@@ -106,6 +89,24 @@ if(runIntegrationTests) {
               expect(res).to.have.status(200)
             })
         })
+      }),
+      it('Should Save successfully', () => {
+        chai.request(server)
+          .post('/setup')
+          .set('X-API-KEY', apikey.readToken())
+          .set('Content-Type', 'application/json')
+          .send({
+            'enabled': false,
+            'name': 'foobar',
+            'address': 'bar',
+            'port': 12345,
+            'requireHeaders': false
+          })
+          .end((err, res) => {
+            var item = res.body
+            expect(item.name).to.equal('foobar')
+            expect(res).to.have.status(201)
+          })
       })
     })
   })
