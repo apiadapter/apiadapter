@@ -7,7 +7,7 @@ npm run start
 // To test api adapter core, run:
 npm run test
 // To run integration tests, run:
-npm run script integration-test
+npm run integration-test
 ```
 
 ## Requirements for integration testing (at the moment)
