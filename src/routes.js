@@ -65,6 +65,22 @@ export default {
         'source': './controllers/setupController/apiMappingDelete.js'
       }
     },
+    'setup/:id/header': {
+      'post': {
+        'source': './controllers/setupController/headerPost.js'
+      }
+    },
+    'setup/:id/header/:headerId': {
+      'get': {
+        'source': './controllers/setupController/headerGet.js'
+      },
+      'put': {
+        'source': './controllers/setupController/headerPut.js'
+      },
+      'delete': {
+        'source': './controllers/setupController/headerDelete.js'
+      }
+    },
     'schema/:name': {
       'get': {
         'source': './controllers/schemaController/get.js'
