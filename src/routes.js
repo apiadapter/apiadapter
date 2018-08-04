@@ -1,12 +1,12 @@
 export default {
   'schemaVersion': 1,
   'routes': {
-    'setup': {
+    'setup/:id/api': {
       'post': {
         'source': './controllers/setupController/apiPost.js'
       }
     },
-    'setup/:id': {
+    'setup/:id/api/:apiId': {
       'get': {
         'source': './controllers/setupController/apiGet.js'
       },
@@ -17,12 +17,12 @@ export default {
         'source': './controllers/setupController/apiDelete.js'
       }
     },
-    'setup/:id/client': {
+    'setup': {
       'post': {
         'source': './controllers/setupController/clientPost.js'
       }
     },
-    'setup/:id/client/:clientId': {
+    'setup/:id': {
       'get': {
         'source': './controllers/setupController/clientGet.js'
       },

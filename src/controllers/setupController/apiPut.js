@@ -13,10 +13,10 @@ module.exports = function handler(req, res, next) {
 
   let data = req.body || {}
   if (!data._id) {
-    data = Object.assign({}, data, {_id: ObjectId(req.params.id), updated: new Date()})
+    data = Object.assign({}, data, {_id: ObjectId(req.params.apiId), updated: new Date()})
   }
 
-  Api.findOne({_id: ObjectId(req.params.id)}, function(err, api) {
+  Api.findOne({_id: ObjectId(req.params.apiId)}, function(err, api) {
     if(err) {
       if (err) {
         return next(
