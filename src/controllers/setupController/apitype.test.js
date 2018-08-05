@@ -3,7 +3,7 @@ import chaiHttp from 'chai-http'
 import config from 'config'
 import Server from '../../server'
 import Apikey from '../../tools/apikey'
-import Header from '../../dal/entities/headers/headerModel'
+import Apitype from '../../dal/entities/apitype/apitypeModel'
 import Database from '../../db'
 
 chai.use(chaiHttp)
@@ -16,18 +16,16 @@ var runIntegrationTests = (process.env.INTEGRATION_TESTS == 'true')
 var apikey = new Apikey()
 
 if(runIntegrationTests) { 
-  describe('HeaderController', () =>  { 
+  describe('ApitypeController', () =>  { 
     it('Should Get successfully', (done) => {
-      var item = new Header({
+      var item = new Apitype({
         'enabled': false,
-        'name': 'foo',
-        'key': 'key',
-        'value': 'value',
+        'name': 'foobar',
         'updated': new Date()
       })
       item.save((err, item) => {
         chai.request(server)
-          .get('/setup/123456789023/header/' + item._id)
+          .get('/setup/123456789023/apitype/' + item._id)
           .set('X-API-KEY', apikey.readToken())
           .end((err, res) => {
             expect(res).to.have.status(200)
@@ -36,16 +34,15 @@ if(runIntegrationTests) {
       })
     }),
     it('Should delete successfully', (done) => {
-      var item = new Header({
+      var item = new Apitype({
         'enabled': false,
-        'name': 'foo',
-        'key': 'key',
-        'value': 'value',
+        'name': 'foobar',
         'updated': new Date()
       })
       item.save((err, item) => {
+        console.log(err)
         chai.request(server)
-          .delete('/setup/123456789023/header/' + item._id)
+          .delete('/setup/123456789023/apitype/' + item._id)
           .set('X-API-KEY', apikey.readToken())
           .end((err, res) => {
             expect(res).to.have.status(202)
@@ -55,14 +52,12 @@ if(runIntegrationTests) {
     }),
     it('Should Post successfully', (done) => {
       chai.request(server)
-        .post('/setup/123456789023/header')
+        .post('/setup/123456789023/apitype')
         .set('X-API-KEY', apikey.readToken())
         .set('Content-Type', 'application/json')
         .send({
           'enabled': false,
-          'name': 'foo',
-          'key': 'key',
-          'value': 'value',
+          'name': 'foobar',
           'updated': new Date()
         })
         .end((err, res) => {
@@ -71,21 +66,20 @@ if(runIntegrationTests) {
         })
     }),
     it('Should Update successfully', (done) => {
-      var item = new Header({
+      var item = new Apitype({
         'enabled': false,
-        'name': 'foo',
-        'key': 'key',
-        'value': 'value',
+        'name': 'foobar',
         'updated': new Date()
       })
       item.save((err, item) => {
-        item.name = 'newname'
+        item.name = 'newtype'
         chai.request(server)
-          .put('/setup/123456789023/header/' + item._id)
+          .put('/setup/123456789023/apitype/' + item._id)
           .set('X-API-KEY', apikey.readToken())
           .set('Content-Type', 'application/json')
           .send(item)
           .end((err, res) => {
+            expect(res.body.name).to.equal('newtype')
             expect(res).to.have.status(200)
             done()
           })

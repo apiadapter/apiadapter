@@ -33,22 +33,6 @@ export default {
         'source': './controllers/setupController/clientDelete.js'
       }
     },
-    'setup/:id/apitype': {
-      'post': {
-        'source': './controllers/setupController/apitypePost.js'
-      }
-    },
-    'setup/:id/apitype/:apitypeId': {
-      'get': {
-        'source': './controllers/setupController/apitypeGet.js'
-      },
-      'put': {
-        'source': './controllers/setupController/apitypePut.js'
-      },
-      'delete': {
-        'source': './controllers/setupController/apitypeDelete.js'
-      }
-    },
     'setup/:id/apimapping': {
       'post': {
         'source': './controllers/setupController/apiMappingPost.js'
@@ -95,6 +79,22 @@ export default {
       },
       'delete': {
         'source': './controllers/setupController/apikeyDelete.js'
+      }
+    },
+    'setup/:id/apitype': {
+      'post': {
+        'source': './controllers/setupController/apitypePost.js'
+      }
+    },
+    'setup/:id/apitype/:apitypeId': {
+      'get': {
+        'source': './controllers/setupController/apitypeGet.js'
+      },
+      'put': {
+        'source': './controllers/setupController/apitypePut.js'
+      },
+      'delete': {
+        'source': './controllers/setupController/ApitypeDelete.js'
       }
     },
     'schema/:name': {
