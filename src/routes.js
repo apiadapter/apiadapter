@@ -94,7 +94,7 @@ export default {
         'source': './controllers/setupController/apitypePut.js'
       },
       'delete': {
-        'source': './controllers/setupController/ApitypeDelete.js'
+        'source': './controllers/setupController/apitypeDelete.js'
       }
     },
     'schema/:name': {
