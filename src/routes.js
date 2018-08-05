@@ -81,6 +81,22 @@ export default {
         'source': './controllers/setupController/headerDelete.js'
       }
     },
+    'setup/:id/apikey': {
+      'post': {
+        'source': './controllers/setupController/apikeyPost.js'
+      }
+    },
+    'setup/:id/apikey/:apikeyId': {
+      'get': {
+        'source': './controllers/setupController/apikeyGet.js'
+      },
+      'put': {
+        'source': './controllers/setupController/apikeyPut.js'
+      },
+      'delete': {
+        'source': './controllers/setupController/apikeyDelete.js'
+      }
+    },
     'schema/:name': {
       'get': {
         'source': './controllers/schemaController/get.js'
