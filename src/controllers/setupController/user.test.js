@@ -71,7 +71,6 @@ if(runIntegrationTests) {
           updated: new Date()
         })
         .end((err, res) => {
-          console.log(res.body)
           expect(res.body.password).to.not.equal('12345678')
           expect(res).to.have.status(201)
           done()
