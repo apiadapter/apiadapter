@@ -7,7 +7,7 @@
     "pretest": "eslint --ignore-path .gitignore .",
     "start": "export NODE_ENV=development && node index.js",
     "test": "export NODE_ENV=test INTEGRATION_TESTS=false && ./node_modules/.bin/mocha --require babel-core/register src/**/*.test.js src/**/**/*.test.js src/**/**/**/*.test.js --reporter spec",
-    "integration-test": "export NODE_ENV=test INTEGRATION_TESTS=true &&  ./node_modules/.bin/mocha --require babel-core/register src/**/*.test.js src/**/**/*.test.js src/**/**/**/*.test.js --reporter spec",
+    "integration-test": "export NODE_ENV=test INTEGRATION_TESTS=true &&  ./node_modules/.bin/mocha --exit --require babel-core/register src/**/*.test.js src/**/**/*.test.js src/**/**/**/*.test.js --reporter spec",
     "migrate": "./node_modules/.bin/migrate",
     "createTemplates": "node ./scripts/templateGenerator.js",
     "compile": "babel src --out-dir .compiled --source-maps --watch"
