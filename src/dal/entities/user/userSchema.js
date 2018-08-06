@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
   lastName: {type: String, required: true},
   email: {type: String, required: true},
   password: {type: String, required: true, minlength: 6},
+  salt: {type: String, required: true},
   userConfirmed: Boolean,
   passwordResetExpireDate: Date,
   client: [{type: Schema.Types.ObjectId, ref: 'Client'}],

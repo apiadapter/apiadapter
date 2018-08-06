@@ -27,6 +27,7 @@ describe('Database models', (done) => {
         firstName: 'test', 
         lastName: 'person', 
         password: '12345',
+        salt: 'abcdefg',
         email: 'foo@bar.com'
       })
       invalid.validate((err) => {
@@ -39,6 +40,7 @@ describe('Database models', (done) => {
         firstName: 'test', 
         lastName: 'person', 
         password: '1234567',
+        salt: 'abcdefg',
         email: 'foo@bar.com'
       })
       valid.validate((err) => {
@@ -52,6 +54,7 @@ describe('Database models', (done) => {
           firstName: 'test', 
           lastName: 'person', 
           password: '1234567',
+          salt: 'abcdefg',
           email: 'foo@bar.com'
         })
         item.save(function(err, item) {
@@ -77,6 +80,7 @@ describe('Database models', (done) => {
           firstName: 'test', 
           lastName: 'person', 
           password: '12345',
+          salt: 'abcdefg',
           email: 'foo@bar.com'
         })
         item.save(function(err, item) {

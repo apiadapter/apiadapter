@@ -23,6 +23,7 @@ if(runIntegrationTests) {
         firstName: 'test', 
         lastName: 'person', 
         password: '1234578',
+        salt: 'abcdefg',
         email: 'foo@bar.com',
         updated: new Date()
       })
@@ -42,6 +43,7 @@ if(runIntegrationTests) {
         firstName: 'test', 
         lastName: 'person', 
         password: '1234578',
+        salt: 'abcedfg',
         email: 'foo@bar.com',
         updated: new Date()
       })
@@ -69,7 +71,8 @@ if(runIntegrationTests) {
           updated: new Date()
         })
         .end((err, res) => {
-          console.log(err)
+          console.log(res.body)
+          expect(res.body.password).to.not.equal('12345678')
           expect(res).to.have.status(201)
           done()
         })
@@ -80,6 +83,7 @@ if(runIntegrationTests) {
         firstName: 'test', 
         lastName: 'person', 
         password: '1234578',
+        salt: 'abcdefg',
         email: 'foo@bar.com',
         updated: new Date()
       })
