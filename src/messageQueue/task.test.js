@@ -21,7 +21,8 @@ describe('Task', () => {
         var task = new Task().create('dummy').then(function(result) {
           expect(result).to.not.be.null
           expect(JSON.parse(result)).to.not.throw
-        }).finally(done)
+          done()
+        })
       })
     }
   })

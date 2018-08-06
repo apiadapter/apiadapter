@@ -24,7 +24,7 @@ if(runIntegrationTests) {
         lastName: 'person', 
         password: '1234578',
         salt: 'abcdefg',
-        email: 'foo@bar.com',
+        email: 'test@bar.com',
         updated: new Date()
       })
       item.save((err, item) => {
@@ -44,7 +44,7 @@ if(runIntegrationTests) {
         lastName: 'person', 
         password: '1234578',
         salt: 'abcedfg',
-        email: 'foo@bar.com',
+        email: 'test1@bar.com',
         updated: new Date()
       })
       item.save((err, item) => {
@@ -67,7 +67,7 @@ if(runIntegrationTests) {
           firstName: 'test', 
           lastName: 'person', 
           password: '1234578',
-          email: 'foo@bar.com',
+          email: 'test2@bar.com',
           updated: new Date()
         })
         .end((err, res) => {
@@ -83,7 +83,7 @@ if(runIntegrationTests) {
         lastName: 'person', 
         password: '1234578',
         salt: 'abcdefg',
-        email: 'foo@bar.com',
+        email: 'test3@bar.com',
         updated: new Date()
       })
       item.save((err, item) => {

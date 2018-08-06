@@ -40,7 +40,6 @@ if(runIntegrationTests) {
         'updated': new Date()
       })
       item.save((err, item) => {
-        console.log(err)
         chai.request(server)
           .delete('/setup/123456789023/apitype/' + item._id)
           .set('X-API-KEY', apikey.readToken())

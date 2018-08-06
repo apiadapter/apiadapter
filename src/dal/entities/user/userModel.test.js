@@ -28,7 +28,7 @@ describe('Database models', (done) => {
         lastName: 'person', 
         password: '12345',
         salt: 'abcdefg',
-        email: 'foo@bar.com'
+        email: 'foo1@bar.com'
       })
       invalid.validate((err) => {
         expect(err.errors.password).to.exist
@@ -41,7 +41,7 @@ describe('Database models', (done) => {
         lastName: 'person', 
         password: '1234567',
         salt: 'abcdefg',
-        email: 'foo@bar.com'
+        email: 'foo2@bar.com'
       })
       valid.validate((err) => {
         expect(err).to.not.exist
@@ -55,7 +55,7 @@ describe('Database models', (done) => {
           lastName: 'person', 
           password: '1234567',
           salt: 'abcdefg',
-          email: 'foo@bar.com'
+          email: 'foo3@bar.com'
         })
         item.save(function(err, item) {
           expect(err).to.not.exist
@@ -81,12 +81,39 @@ describe('Database models', (done) => {
           lastName: 'person', 
           password: '12345',
           salt: 'abcdefg',
-          email: 'foo@bar.com'
+          email: 'foo4@bar.com'
         })
         item.save(function(err, item) {
           expect(err.errors.password).to.exist
           done()
         })
+      })
+      it('Should throw a validation error on unique email', (done) => {
+        var first = new User({enabled: true, 
+          firstName: 'test', 
+          lastName: 'person', 
+          password: '1234578',
+          salt: 'abcdefg',
+          email: 'unique@bar.com'
+        })
+        first.save(function(err, item) {
+          var second = new User({enabled: true, 
+            firstName: 'secondTest', 
+            lastName: 'person', 
+            password: '1234578',
+            salt: 'abcdefg',
+            email: 'unique@bar.com'
+          })
+          second.save(function(error, item) {
+            expect(error).to.exist
+            User.collection.drop((err) => {
+              done()
+            })
+          })
+          
+        })
+
+        
       })
     }
   })
