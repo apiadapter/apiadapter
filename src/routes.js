@@ -102,6 +102,11 @@ export default {
         'source': './controllers/setupController/userPost.js'
       }
     },
+    'setup/authenticate': {
+      'post': {
+        'source': './controllers/setupController/userAuthenticate.js'
+      }
+    },
     'setup/user/:id': {
       'get': {
         'source': './controllers/setupController/userGet.js'

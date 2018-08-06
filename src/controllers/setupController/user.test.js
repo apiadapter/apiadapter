@@ -99,6 +99,62 @@ if(runIntegrationTests) {
             done()
           })
       })
+    }),
+    it('Should Authenticate user', (done) => {
+      chai.request(server)
+        .post('/setup/user')
+        .set('X-API-KEY', apikey.readToken())
+        .set('Content-Type', 'application/json')
+        .send({
+          enabled: true, 
+          firstName: 'test', 
+          lastName: 'person', 
+          password: '1234578',
+          email: 'test2@bar.com',
+          updated: new Date()
+        })
+        .end((err, res) => {
+          chai.request(server)
+            .post('/setup/authenticate')
+            .set('X-API-KEY', apikey.readToken())
+            .set('Content-Type', 'application/json')
+            .send({
+              email: 'test2@bar.com',
+              password: '1234578'
+            })
+            .end((error,response) => {
+              expect(response).to.have.status(200)
+              done()
+            })
+        })
+    })
+    it('Should not authenticate user', (done) => {
+      chai.request(server)
+        .post('/setup/user')
+        .set('X-API-KEY', apikey.readToken())
+        .set('Content-Type', 'application/json')
+        .send({
+          enabled: true, 
+          firstName: 'test', 
+          lastName: 'person', 
+          password: '1234578',
+          email: 'test2@bar.com',
+          updated: new Date()
+        })
+        .end((err, res) => {
+          chai.request(server)
+            .post('/setup/authenticate')
+            .set('X-API-KEY', apikey.readToken())
+            .set('Content-Type', 'application/json')
+            .send({
+              email: 'test2@bar.com',
+              password: '12345789'
+            })
+            .end((error,response) => {
+              expect(response).to.have.status(403)
+              done()
+            })
+        })
     })
   })
 }
