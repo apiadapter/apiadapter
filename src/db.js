@@ -9,7 +9,9 @@ class Database {
       connectTimeoutMS: 30000,
       keepAlive: 1
     } 
-    mongoose.connect(config.connectionstring, options)
+    let useCI = (process.env.CI_TESTING == 'true')
+    let connectionString = useCI ? config.travis_connectionstring : config.connectionstring
+    mongoose.connect(connectionString, options)
     let db = mongoose.connection
     db.on('error', console.error.bind(console, 'connection error:'))
   }

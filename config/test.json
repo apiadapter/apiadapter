@@ -5,6 +5,7 @@
     "apikey": "",
     "useAuth": false,
     "connectionstring": "mongodb://mongoadmin:secret@127.0.0.1/test?authSource=admin",
+    "travis_connectionstring": "mongodb://127.0.0.1/test",
     "rabbitHost": "amqp://localhost",
     "rabbitPort": 5672,
     "noIntegrationTests": true,
