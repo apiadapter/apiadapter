@@ -11,44 +11,44 @@ if(runIntegrationTests) {
 
 describe('Database models', (done) => {
   describe('User', () => {
-    it('Should faild with invalid user', (done) => {
-      var invalid = new User()
-      invalid.validate((err) => {
-        expect(err.errors.enabled).to.exist
-        expect(err.errors.firstName).to.exist
-        expect(err.errors.lastName).to.exist
-        expect(err.errors.password).to.exist
-        expect(err.errors.email).to.exist
-        done()
-      })
-    })
-    it('Should faild with invalid password', (done) => {
-      var invalid = new User({enabled: true, 
-        firstName: 'test', 
-        lastName: 'person', 
-        password: '12345',
-        salt: 'abcdefg',
-        email: 'foo1@bar.com'
-      })
-      invalid.validate((err) => {
-        expect(err.errors.password).to.exist
-        done()
-      })
-    }) 
-    it('Should be valid', (done) => {
-      var valid = new User({enabled: true, 
-        firstName: 'test', 
-        lastName: 'person', 
-        password: '1234567',
-        salt: 'abcdefg',
-        email: 'foo2@bar.com'
-      })
-      valid.validate((err) => {
-        expect(err).to.not.exist
-        done()
-      })
-    })
     if(runIntegrationTests) {
+      it('Should fail with invalid user', (done) => {
+        var invalid = new User()
+        invalid.validate((err) => {
+          expect(err.errors.enabled).to.exist
+          expect(err.errors.firstName).to.exist
+          expect(err.errors.lastName).to.exist
+          expect(err.errors.password).to.exist
+          expect(err.errors.email).to.exist
+          done()
+        })
+      })
+      it('Should faild with invalid password', (done) => {
+        var invalid = new User({enabled: true, 
+          firstName: 'test', 
+          lastName: 'person', 
+          password: '12345',
+          salt: 'abcdefg',
+          email: 'foo1@bar.com'
+        })
+        invalid.validate((err) => {
+          expect(err.errors.password).to.exist
+          done()
+        })
+      }) 
+      it('Should be valid', (done) => {
+        var valid = new User({enabled: true, 
+          firstName: 'test', 
+          lastName: 'person', 
+          password: '1234567',
+          salt: 'abcdefg',
+          email: 'foo2@bar.com'
+        })
+        valid.validate((err) => {
+          expect(err).to.not.exist
+          done()
+        })
+      })
       it('Should save successfully', (done) => {
         var item = new User({enabled: true, 
           firstName: 'test', 
