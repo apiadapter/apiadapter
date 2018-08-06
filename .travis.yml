@@ -1,13 +1,24 @@
 language: node_js
-sudo: false
+sudo: required
 env:
+  matrix:
   - CI_TESTING=true
+  - secure: jGF6bl3iX4+yEdB8fI3lnWLsXyVdt2GwfBIn2uVnXzgPw6LrDejN9y0sZQTR6gqK2yxmsBxC7uL3oKS8CHJUmh0/cPAJsp+CsJ5Gy3t4uYBomPklT++kqww04zNSUfm/1I8NrY0RhGJiKPFru+otIrRrloROKVNXKgyV/KuSDtbyUaGk+DbKUGLwCesawzGxq3DXyIFBWwOJyVizEVbtnkwM2Rv69cQMQuOgVARgKv88c4M1S5mkSfc/YghapiPYXJ6IxSTQQnpJryVRSdMMqPBxWp0xPvLtEFzeS0TFAblqPmE0XgRnN2zJSRYd60VBC5Qwl3gEx0OhCakTtVWWItMKi4QNnqhEBhWMTQWfl0bNlvcZMkjxHeJ6KkYuD/4KFkbbBLTEjftcrQGsrlVGa3Dt4T5lUYST3//jbes9AYazlrhZn9BwiEDD/zeR07kLw4kW4Pj5F4DFcdhTZZ4fJeGvTmrV7gklRDQWl3C6lNoxV3H7Nz+L3eh1fSCZaU1TGaxpD1nTduWZ/v2zGv4ukErFG5/U3bEq+7q03yG2dhRHkQE+Fje3lFTXGSLivmOLQyj7ALkx+7+6nWd3bpeCv+8ugV//HbyvOjwtq7LH0fuL/vNhUvj8BodCf0ykUxxyhUuje6glnLO06rjkT8MugrUpThX6beDwULsgiQ2Kvvw=
+  - secure: HNeE59UA3TeeJIKyuFihGp9g9bg29El2uoR9j/fsPNUdoChHNrRlmtO+GKNinJ3WMAMCn7eDY+XVbXS3mvbZ4qRKL4P1/2Q2nBcM6IrIMS20NZL0LLSBynmvSH5U/7wSysakIiJOs+fchQEoN9n7eWXNj0HZmKbkn0PT3PPfp/iys/KM/6t1LSlb9Xif5nUMd4QwAZoqvsCed5u6MdlEl6+poaqBU1xi5YM00b4l0BG9148ahfLCkOH7K73GDIY5U7tNJyU6xw+WsPJ+dUNummP5T14J69gb0kyLZAxZC596zRqkFTenHB2+2kTNqqc9N9rJ6aJsZo0Y/mMsdkKrjmhdtSDCelQlLe3viRjWNkd611XKYita8u1g+E7gEKp3UsAEDnJkrOC8T436lbH/7l9idzwodG6kbKVlu4w40CAjA8QzPyCuoqfAa8kTcIomMKjfKKqRurwM6cTzjcadmUwW/WcH7+kxc6W6Y9344s8Fur6QcN3dLWa3EyJV3YedsI1Wg6AT7tpSk6TlCTVbNV9ok2QwM6Xg9rlidCgRSilKGDW4EvrzuzeJslSPDPzL6jMfb4UvoIxAd1rfQENKpPGQyfrglBMXruWXiirr3/yPui2Q1dIKjTZKuYxDAuwgouDHTJU/GtRArH4Cbq6DFvTi79X77JR2DcCixjGly6o=
 services:
-  - rabbitmq
-  - mongodb
+- rabbitmq
+- mongodb
+- docker
 node_js:
-  - "9.11.1"
+- 9.11.1
 install:
-  - npm install
+- npm install
 script:
-  - npm run integration-test
+- npm run integration-test
+after_success:
+- docker build -t apiadapter/core .
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
