@@ -97,6 +97,22 @@ export default {
         'source': './controllers/setupController/apitypeDelete.js'
       }
     },
+    'setup/user': {
+      'post': {
+        'source': './controllers/setupController/userPost.js'
+      }
+    },
+    'setup/user/:id': {
+      'get': {
+        'source': './controllers/setupController/userGet.js'
+      },
+      'put': {
+        'source': './controllers/setupController/userPut.js'
+      },
+      'delete': {
+        'source': './controllers/setupController/userDelete.js'
+      }
+    },
     'schema/:name': {
       'get': {
         'source': './controllers/schemaController/get.js'
