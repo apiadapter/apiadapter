@@ -83,3 +83,6 @@ APIKEY
 
 # Ignore debug compilation
 .compiled
+
+# Ignore coverage
+coverage

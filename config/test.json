@@ -9,5 +9,6 @@
     "rabbitHost": "amqp://localhost",
     "rabbitPort": 5672,
     "noIntegrationTests": true,
-    "schemaRepository" : "https://raw.githubusercontent.com/apiadapter/core/master/src/schemas/"
+    "schemaRepository" : "https://raw.githubusercontent.com/apiadapter/core/master/src/schemas/",
+    "publicUrl": "http://localhost:8080"
 }

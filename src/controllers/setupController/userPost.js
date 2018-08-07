@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import PasswordHash from 'password-hash'
 import RandomString from 'randomstring'
 import User from '../../dal/entities/user/userModel'
+import Email from '../../messageQueue/email'
 
 const ObjectId = mongoose.Types.ObjectId
 
@@ -20,7 +21,18 @@ module.exports = function handler(req, res, next) {
     if (err) {
       return next(new errors.InternalError(err.message))
     }
-
+    const email = new Email()
+    email.send({
+      template: 'newUser',
+      user: {
+        firstName: item.firstName,
+        lastName: item.lastName,
+        email: item.email
+      },
+      data: {
+        verificationLink: item.email
+      }
+    })
     res.send(201, item)
     next()
   })

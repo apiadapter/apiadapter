@@ -11,6 +11,7 @@ const userSchema = mongoose.Schema({
   salt: {type: String, required: true},
   userConfirmed: Boolean,
   passwordResetExpireDate: Date,
+  verificationToken: String,
   client: [{type: Schema.Types.ObjectId, ref: 'Client'}],
   deleted: Boolean,
   updated: Date

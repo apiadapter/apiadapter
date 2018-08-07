@@ -10,5 +10,7 @@ const apikey = new Apikey()
 config.apikey = apikey.readToken()
 const server = new Server(config)
 new Database().connect()
+new Rabbit().emailConsumer()
 new Rabbit().consumer()
+
 server.start()

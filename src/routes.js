@@ -107,6 +107,21 @@ export default {
         'source': './controllers/setupController/userAuthenticate.js'
       }
     },
+    'setup/resetpassword': {
+      'post': {
+        'source': './controllers/setupController/userResetPassword.js'
+      }
+    },
+    'setup/renewpassword': {
+      'post': {
+        'source': './controllers/setupController/userRenewPassword.js'
+      }
+    },
+    'setup/verify/:email': {
+      'post': {
+        'source': './controllers/setupController/userEmailVerification.js'
+      }
+    },
     'setup/user/:id': {
       'get': {
         'source': './controllers/setupController/userGet.js'

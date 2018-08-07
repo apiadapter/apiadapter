@@ -1,5 +1,13 @@
 # API Adapter
 
+## required Env variables
+```
+* EMAIL_SMTP - your smtp server
+* EMAIL_PORT - your smtp port
+* EMAIL_USERNAME - your smtp username
+* EMAIL_PASSWORD - your smtp password
+```
+
 ## commands
 ```
 // To start api adapter core, run: 
