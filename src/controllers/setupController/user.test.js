@@ -125,7 +125,6 @@ if(runIntegrationTests) {
               .send(user)
               .end((err, res) => {
                 User.findOne({email: user.email}, (err, u) => {
-                  console.log(u.email)
                   const oldPass = u.password
                   chai.request(server)
                     .post('/setup/renewpassword')
