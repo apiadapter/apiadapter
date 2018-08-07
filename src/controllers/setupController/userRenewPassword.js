@@ -12,7 +12,13 @@ module.exports = function handler(req, res, next) {
     res.send(new errors.BadRequestError('Expecting application/json'))
     return next()
   }
-  User.findOne({_id: ObjectId(req.body._id)}, function(err, user) {
+
+  if(typeof(req.body.verificationToken) == 'undefined' || req.body.verificationToken == null) {
+    res.send(new errors.BadRequestError('no verificationToken given!'))
+    return next()
+  }
+
+  User.findOne({verificationToken: req.body.verificationToken}, function(err, user) {
     if (err) {
       return next(
         new errors.InvalidContentError(err.errors.name.message),
@@ -22,6 +28,7 @@ module.exports = function handler(req, res, next) {
       return next(new errors.ForbiddenError('Password reset token expired!'))
     }
     user.passwordResetExpireDate = null
+    user.verificationToken = null
     user.salt = RandomString.generate()
     user.password = PasswordHash.generate(req.body.password + user.salt)
     user.updated = new Date()

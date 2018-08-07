@@ -16,6 +16,7 @@ module.exports = function handler(req, res, next) {
   const data = req.body || {}
   const user = new User(data)
   user.salt = RandomString.generate()
+  user.userConfirmed = user.userConfirmed || false
   user.password = PasswordHash.generate(user.password + user.salt)
   user.save((err, item) => {
     if (err) {
@@ -30,7 +31,7 @@ module.exports = function handler(req, res, next) {
         email: item.email
       },
       data: {
-        verificationLink: item.email
+        verificationLink: item._id
       }
     })
     res.send(201, item)

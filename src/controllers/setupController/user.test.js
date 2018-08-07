@@ -124,18 +124,21 @@ if(runIntegrationTests) {
               .set('Content-Type', 'application/json')
               .send(user)
               .end((err, res) => {
-                const oldPass = user.password
-                user.password = 'foobar123'
-                chai.request(server)
-                  .post('/setup/renewpassword')
-                  .set('X-API-KEY', apikey.readToken())
-                  .set('Content-Type', 'application/json')
-                  .send(user)
-                  .end((err, res) => {
-                    expect(res.body.password).to.not.equal(oldPass)
-                    expect(res).to.have.status(201)
-                    done()
-                  })
+                User.findOne({email: user.email}, (err, u) => {
+                  console.log(u.email)
+                  const oldPass = u.password
+                  chai.request(server)
+                    .post('/setup/renewpassword')
+                    .set('X-API-KEY', apikey.readToken())
+                    .set('Content-Type', 'application/json')
+                    .send({'verificationToken': u.verificationToken, 'password': 'abcdefghijkl'})
+                    .end((err, res) => {
+                      expect(res.body.password).to.not.equal(oldPass)
+                      expect(res).to.have.status(201)
+                      done()
+                    })
+                })
+
               })
           })
 
@@ -147,7 +150,7 @@ if(runIntegrationTests) {
           lastName: 'person', 
           password: '1234578',
           salt: 'abcdefg',
-          email: 'test6@bar.com',
+          email: 'test12@bar.com',
           updated: new Date()
         })
         item.save((err, item) => {
@@ -175,10 +178,9 @@ if(runIntegrationTests) {
         })
         item.save((err, item) => {
           chai.request(server)
-            .post('/setup/verify/' + item.email)
+            .get('/setup/verify/' + item._id)
             .set('X-API-KEY', apikey.readToken())
             .set('Content-Type', 'application/json')
-            .send(item)
             .end((err, res) => {
               expect(res.body.email).to.equal('confirmed')
               expect(res).to.have.status(200)
@@ -196,7 +198,8 @@ if(runIntegrationTests) {
             firstName: 'test', 
             lastName: 'person', 
             password: '1234578',
-            email: 'test2@bar.com',
+            userConfirmed: true,
+            email: 'test22@bar.com',
             updated: new Date()
           })
           .end((err, res) => {
@@ -205,7 +208,7 @@ if(runIntegrationTests) {
               .set('X-API-KEY', apikey.readToken())
               .set('Content-Type', 'application/json')
               .send({
-                email: 'test2@bar.com',
+                email: 'test22@bar.com',
                 password: '1234578'
               })
               .end((error,response) => {
@@ -213,7 +216,7 @@ if(runIntegrationTests) {
                 done()
               })
           })
-      })
+      }),
       it('Should not authenticate user', (done) => {
         chai.request(server)
           .post('/setup/user')
@@ -224,7 +227,8 @@ if(runIntegrationTests) {
             firstName: 'test', 
             lastName: 'person', 
             password: '1234578',
-            email: 'test2@bar.com',
+            userConfirmed: false,
+            email: 'test23@bar.com',
             updated: new Date()
           })
           .end((err, res) => {
@@ -233,8 +237,36 @@ if(runIntegrationTests) {
               .set('X-API-KEY', apikey.readToken())
               .set('Content-Type', 'application/json')
               .send({
-                email: 'test2@bar.com',
+                email: 'test23@bar.com',
                 password: '12345789'
+              })
+              .end((error,response) => {
+                expect(response).to.have.status(403)
+                done()
+              })
+          })
+      }),
+      it('Should not authenticate unconfirmed user', (done) => {
+        chai.request(server)
+          .post('/setup/user')
+          .set('X-API-KEY', apikey.readToken())
+          .set('Content-Type', 'application/json')
+          .send({
+            enabled: true, 
+            firstName: 'test', 
+            lastName: 'person', 
+            password: '1234578',
+            email: 'test24@bar.com',
+            updated: new Date()
+          })
+          .end((err, res) => {
+            chai.request(server)
+              .post('/setup/authenticate')
+              .set('X-API-KEY', apikey.readToken())
+              .set('Content-Type', 'application/json')
+              .send({
+                email: 'test24@bar.com',
+                password: '1234578'
               })
               .end((error,response) => {
                 expect(response).to.have.status(403)

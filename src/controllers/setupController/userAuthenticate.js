@@ -19,6 +19,11 @@ module.exports = function handler(req, res, next) {
           new errors.NotAuthorizedError('Wrong email or password'),
         )
       }
+      if(!user.userConfirmed) {
+        return next(
+          new errors.NotAuthorizedError('email not confirmed!'),
+        )
+      }
       res.send(200,user)
       next()
     }

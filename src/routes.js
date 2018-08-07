@@ -117,8 +117,8 @@ export default {
         'source': './controllers/setupController/userRenewPassword.js'
       }
     },
-    'setup/verify/:email': {
-      'post': {
+    'setup/verify/:id': {
+      'get': {
         'source': './controllers/setupController/userEmailVerification.js'
       }
     },
