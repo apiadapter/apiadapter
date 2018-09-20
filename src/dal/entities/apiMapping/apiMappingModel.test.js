@@ -16,13 +16,14 @@ describe('Database models', (done) => {
       invalid.validate((err) => {
         expect(err.errors.enabled).to.exist
         expect(err.errors.schemaName).to.exist
+        expect(err.errors.toSchemaName).to.exist
         expect(err.errors.fromField).to.exist
         expect(err.errors.toField).to.exist
         done()
       })
     }) 
     it('Should be valid', (done) => {
-      var valid = new ApiMapping({enabled: true, schemaName: 'test', fromField: 'fromTest', toField: 'toTest'})
+      var valid = new ApiMapping({enabled: true, schemaName: 'test', toSchemaName: 'test2', fromField: 'fromTest', toField: 'toTest'})
       valid.validate((err) => {
         expect(err).to.not.exist
         done()
@@ -30,7 +31,7 @@ describe('Database models', (done) => {
     })
     if(runIntegrationTests) {
       it('Should save successfully', (done) => {
-        var item = new ApiMapping({enabled: true, schemaName: 'test', fromField: 'fromTest', toField: 'toTest'})
+        var item = new ApiMapping({enabled: true, schemaName: 'test',toSchemaName: 'test2', fromField: 'fromTest', toField: 'toTest'})
         item.save(function(err, item) {
           expect(err).to.not.exist
           expect(item).to.exist
@@ -44,6 +45,7 @@ describe('Database models', (done) => {
         item.save(function(err, item) {
           expect(err.errors.enabled).to.exist
           expect(err.errors.schemaName).to.exist
+          expect(err.errors.toSchemaName).to.exist
           expect(err.errors.fromField).to.exist
           expect(err.errors.toField).to.exist
           done()
