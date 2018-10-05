@@ -1,5 +1,4 @@
 import config from 'config'
-import mongoose from 'mongoose'
 import Database from './db'
 import Server from './server.js'
 import Apikey from './tools/apikey'
