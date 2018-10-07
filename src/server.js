@@ -3,8 +3,12 @@ import errors from 'restify-errors'
 import enroute from 'restify-enroute'
 import morgan from 'morgan'
 import config from 'config'
+import mongoose from 'mongoose'
 import Routes from './routes.js'
 import Apikey from './tools/apikey'
+import ApikeyModel from './dal/entities/apikey/apikeyModel'
+
+const ObjectId = mongoose.Types.ObjectId
 
 class Server {
   constructor (settings) {
@@ -35,11 +39,19 @@ class Server {
     return server
   }
 
-  authorization(req,res,next) {
-    if(req.header('X-API-KEY') !== new Apikey().readToken()) {
+  async authorization(req,res,next) {
+    const apikey_header = req.header('X-API-KEY')
+  
+    //Check that apikey header is given
+    if(typeof(apikey_header) === 'undefined' || apikey_header.length < 1)  {
       return next(new errors.UnauthorizedError('Invalid token or token missing'))
-    } else {
+    }
+    let result = await ApikeyModel.findOne({key: apikey_header, enabled: true})
+
+    if(apikey_header === new Apikey().readToken() || result !== null) {
       next()
+    } else {
+      return next(new errors.UnauthorizedError('Invalid token or token missing'))
     }
   }
 

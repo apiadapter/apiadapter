@@ -23,21 +23,21 @@ if(runIntegrationTests) {
     describe('Apikey', () =>  { 
       it('Should Get successfully', (done) => {
         var item = new Apikey({
-          'enabled': false,
-          'client': ObjectId('123456789012'),
-          'key': 'foobar',
+          'enabled': true,
+          'client': ObjectId('987654321012'),
+          'key': '1234567890',
           'updated': new Date()
         })
         item.save((err, item) => {
           chai.request(server)
             .get('/setup/123456789023/apikey/' + item._id)
-            .set('X-API-KEY', apikey.readToken())
+            .set('X-API-KEY', item.key)
             .end((err, res) => {
               expect(res).to.have.status(200)
               done()
             })
         })
-      }),
+      }).timeout(10000),
       it('Should delete successfully', (done) => {
         var item = new Apikey({
           'enabled': false,
@@ -62,7 +62,7 @@ if(runIntegrationTests) {
           .set('Content-Type', 'application/json')
           .send({
             'enabled': false,
-            'client': ObjectId('123456789012'),
+            'client': ObjectId('482734657815'),
             'key': 'foobar',
             'updated': new Date()
           })
