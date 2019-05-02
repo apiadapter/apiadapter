@@ -15,7 +15,7 @@ npm run start
 // To test api adapter core, run:
 npm run test
 // To run integration tests, run:
-npm run integration-test
+npm run integration-test (this is automatically run in Travis CI)
 ```
 
 ## Requirements for integration testing (at the moment)
